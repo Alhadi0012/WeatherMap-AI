@@ -38,64 +38,31 @@ PORT=3000
 
 
 
-## How the key stays secret
-
-```
-Browser  ──POST /api/chat──▶  backend/server.js  ──+ key──▶  Google Gemini
-   ▲                                │
-   └──────────── answer ────────────┘
-```
-
-The browser never sees the key. It is read from `backend/.env`, which is listed
-in `.gitignore` and is also blocked from being served over HTTP (`403`).
-
-This is real protection, unlike putting the key in a frontend file: there, any
-visitor could read it in DevTools.
-
-| File | Committed? | Contains |
-|---|---|---|
-| `js/config.js` | yes | public frontend settings, no secrets |
-| `backend/.env.example` | yes | a template with empty values |
-| `backend/.env` | **no** — git-ignored | the real Gemini key |
-
----
+#
 
 ## Project structure
 
 ```
 weathermap-ai/
-├── index.html          structure only - no inline styles, no inline onclick
-├── css/
-│   └── style.css       all styling
-├── js/
-│   ├── config.js       public settings (NO secrets)
-│   ├── api.js          weather fetch calls + async/await   (data layer)
-│   ├── mapView.js      everything related to Leaflet        (map layer)
-│   ├── favourites.js   LocalStorage helper
-│   ├── share.js        share message, Web Share API, clipboard
-│   ├── chat.js         assistant: local engine + backend calls
-│   └── app.js          events, rendering, workflow          (controller)
-└── backend/
-    ├── server.js       static files + /api/chat proxy
-    ├── package.json    no dependencies
-    ├── .env            YOUR KEY - git-ignored, never committed
-    └── .env.example    template, safe to commit
-```
+   index.html          structure only - no inline styles, no inline onclick
+    css/
+│         style.css       all styling
+├ js/
+│     config.js       public settings (NO secrets)
+│     api.js          weather fetch calls + async/await   (data layer)
+│     mapView.js      everything related to Leaflet        (map layer)
+│     favourites.js   LocalStorage helper
+│     share.js        share message, Web Share API, clipboard
+│     chat.js         assistant: local engine + backend calls
+│     app.js          events, rendering, workflow          (controller)
+└ backend/
+          server.js       static files + /api/chat proxy
+          package.json    no dependencies
+         .env            YOUR KEY - git-ignored, never committed
+         .env.example    template, safe to commit
 
----
 
-## API
 
-| Endpoint | Method | Returns |
-|---|---|---|
-| `/api/health` | GET | `{ "ai": true/false, "model": "..." }` — never the key |
-| `/api/chat` | POST | `{ "text": "..." }` or `{ "error": "..." }` |
-
-`/api/chat` validates the input (rejects empty and over-500-character
-questions, bad JSON and bodies over 20 KB) and relays Google's own error text
-so failures are diagnosable.
-
----
 
 ## Features
 
@@ -112,5 +79,5 @@ so failures are diagnosable.
   - If the server call fails for any reason the local engine answers instead,
     so the assistant always replies. The badge shows which engine answered.
 
----
+
 
