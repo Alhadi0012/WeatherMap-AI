@@ -1,0 +1,13 @@
+{
+  "name": "weathermap-backend",
+  "version": "1.0.0",
+  "description": "Keeps the Gemini API key off the browser and serves the WeatherMap frontend.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}

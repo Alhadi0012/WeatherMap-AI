@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WeatherMap</title>
+
+  <!-- Google Font (Roboto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet map library (allowed by the specification) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Our own stylesheet: all styling lives here, never inline -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <h1 id="pageTitle">WeatherMap</h1>
+  <p class="subtitle">Type a city name and see its live weather on the map.</p>
+</header>
+
+<main>
+  <!-- Search form: submission is intercepted by JavaScript, the page never reloads -->
+  <form id="searchForm" autocomplete="off">
+    <input type="text" id="locationInput" placeholder="e.g. Khartoum" required>
+    <button type="submit" id="searchButton">Get Weather</button>
+  </form>
+
+  <!-- Favourite cities (saved in LocalStorage) -->
+  <section id="favouritesBar" class="favourites">
+    <span class="favourites-label">Favourites:</span>
+    <div id="favouritesList"></div>
+  </section>
+
+  <!-- Loading spinner, shown only while a request is running -->
+  <div id="spinner" class="spinner hidden"></div>
+
+  <!-- Friendly error card, never a silent console error -->
+  <div id="errorBox" class="alert hidden"></div>
+
+  <!-- Current weather card -->
+  <section id="weatherCard" class="card hidden">
+    <div class="weather-main">
+      <span id="weatherIcon" class="weather-icon"></span>
+      <div>
+        <h2 id="placeName"></h2>
+        <p id="temperature" class="temperature"></p>
+        <p id="description" class="description"></p>
+      </div>
+    </div>
+    <ul id="weatherDetails" class="details"></ul>
+    <div class="card-buttons">
+      <button type="button" id="shareButton">Share Weather</button>
+      <button type="button" id="favouriteButton">Add to Favourites</button>
+    </div>
+
+    <!-- Share menu: shown when the browser has no native share sheet -->
+    <div id="shareMenu" class="share-menu hidden">
+      <div class="share-head">
+        <strong>Share this weather</strong>
+        <button type="button" id="closeShareButton" class="share-close">&times;</button>
+      </div>
+      <p id="sharePreview" class="share-preview"></p>
+      <div id="shareTargets" class="share-targets"></div>
+      <button type="button" id="copyButton" class="share-copy">Copy message</button>
+    </div>
+  </section>
+
+  <!-- AI assistant: answers questions about the weather currently shown -->
+  <section id="chatCard" class="card hidden">
+    <div class="chat-head">
+      <strong>Weather Assistant</strong>
+      <span id="chatEngine" class="chat-engine"></span>
+    </div>
+    <div id="chatLog" class="chat-log"></div>
+    <div id="chatSuggestions" class="chat-suggestions"></div>
+    <form id="chatForm" class="chat-form" autocomplete="off">
+      <input type="text" id="chatInput" placeholder="Ask about the weather..." required>
+      <button type="submit" id="chatSend">Ask</button>
+    </form>
+  </section>
+
+  <!-- 5-day forecast -->
+  <section id="forecastSection" class="hidden">
+    <h3>5-Day Forecast</h3>
+    <div id="forecastList" class="forecast"></div>
+  </section>
+
+  <!-- The map: 70% of the viewport height (see style.css) -->
+  <div id="map"></div>
+</main>
+
+<footer>WeatherMap &copy; 2026 — Advanced Web Technologies, SUST</footer>
+
+<!-- Scripts are loaded in dependency order -->
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/mapView.js"></script>
+<script src="js/favourites.js"></script>
+<script src="js/share.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

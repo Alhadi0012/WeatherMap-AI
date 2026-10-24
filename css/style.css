@@ -1,0 +1,321 @@
+/* ===== Base ===== */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Roboto", Arial, sans-serif;
+  background: #f1f4f8;
+  color: #1f2a37;
+}
+
+header { text-align: center; padding: 24px 16px 8px; }
+
+/* Page title: twice the normal body size + a subtle realistic shadow */
+#pageTitle {
+  font-size: 2em;
+  font-weight: 700;
+  margin: 0;
+  color: #1b2a4a;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, .25);
+}
+
+.subtitle { margin: 6px 0 0; color: #5b6878; }
+
+main { max-width: 900px; margin: 0 auto; padding: 16px; }
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #6b7280;
+  font-size: .9em;
+}
+
+/* ===== Search form ===== */
+#searchForm { display: flex; gap: 10px; margin-bottom: 14px; }
+
+#locationInput {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 1em;
+  font-family: inherit;
+  border: 2px solid #d4dbe5;        /* default browser styling removed */
+  border-radius: 10px;
+  outline: none;
+  background: #fff;
+  transition: border-color .25s, box-shadow .25s;
+}
+#locationInput:focus {
+  border-color: #1b2a4a;
+  box-shadow: 0 0 0 4px rgba(27, 42, 74, .12);
+}
+
+#searchButton {
+  padding: 12px 22px;
+  font-size: 1em;
+  font-family: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: #1b2a4a;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background .25s, transform .15s;
+}
+#searchButton:hover  { background: #2c4372; }
+#searchButton:active { transform: scale(.97); }
+
+/* ===== Favourites ===== */
+.favourites { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.favourites-label { color: #5b6878; font-size: .9em; }
+#favouritesList { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.favourite-chip {
+  padding: 6px 12px;
+  background: #fff;
+  border: 1px solid #d4dbe5;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .2s, border-color .2s;
+}
+.favourite-chip:hover { background: #e7edf6; border-color: #1b2a4a; }
+
+/* ===== Spinner ===== */
+.spinner {
+  width: 42px;
+  height: 42px;
+  margin: 20px auto;
+  border: 5px solid #d4dbe5;
+  border-top-color: #1b2a4a;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ===== Alert card ===== */
+.alert {
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  background: #fdecec;
+  border: 1px solid #f3b4b4;
+  border-left: 5px solid #c0392b;
+  border-radius: 8px;
+  color: #922b21;
+}
+
+/* ===== Weather card ===== */
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, .08);
+}
+
+.weather-main { display: flex; align-items: center; gap: 18px; }
+.weather-icon { font-size: 3.2em; line-height: 1; }
+.card h2 { margin: 0; font-size: 1.3em; }
+.temperature { margin: 4px 0; font-size: 1.9em; font-weight: 700; color: #1b2a4a; }
+.description { margin: 0; color: #5b6878; text-transform: capitalize; }
+
+.details { list-style: none; display: flex; flex-wrap: wrap; gap: 18px; padding: 14px 0 0; margin: 0; color: #3b4758; }
+
+.card-buttons { display: flex; gap: 10px; flex-wrap: wrap; padding-top: 14px; }
+.card-buttons button {
+  padding: 9px 16px;
+  font-family: inherit;
+  background: #e7edf6;
+  color: #1b2a4a;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.card-buttons button:hover { background: #cfdcee; }
+
+/* ===== Share menu ===== */
+.share-menu {
+  margin-top: 14px;
+  padding: 14px;
+  background: #f7f9fc;
+  border: 1px solid #d4dbe5;
+  border-radius: 12px;
+  animation: slideDown .25s ease;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.share-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.share-head strong { color: #1b2a4a; }
+
+.share-close {
+  background: none;
+  border: none;
+  font-size: 1.4em;
+  line-height: 1;
+  color: #8a97a8;
+  cursor: pointer;
+  padding: 0 4px;
+  transition: color .2s;
+}
+.share-close:hover { color: #1b2a4a; }
+
+.share-preview {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px dashed #c6d0e0;
+  border-radius: 8px;
+  font-size: .9em;
+  color: #3b4758;
+  line-height: 1.5;
+}
+
+.share-targets { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+
+.share-target {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+  background: #fff;
+  border: 1px solid #d4dbe5;
+  border-radius: 24px;
+  color: #1b2a4a;
+  text-decoration: none;
+  font-size: .92em;
+  transition: background .2s, border-color .2s, transform .15s;
+}
+.share-target:hover { background: #e7edf6; border-color: #1b2a4a; }
+.share-target:active { transform: scale(.97); }
+.share-icon { font-size: 1.1em; }
+
+.share-copy {
+  width: 100%;
+  padding: 10px;
+  font-family: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: #1b2a4a;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.share-copy:hover { background: #2c4372; }
+
+/* ===== Forecast ===== */
+.forecast { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+.forecast-day {
+  flex: 1 1 120px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
+}
+.forecast-day .day  { font-weight: 700; margin-bottom: 4px; }
+.forecast-day .icon { font-size: 1.8em; }
+.forecast-day .temp { color: #3b4758; font-size: .95em; }
+
+/* ===== Map: exactly 70% of the viewport height ===== */
+#map {
+  height: 70vh;
+  border: 3px solid #1b2a4a;        /* solid navy border */
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .15);
+}
+
+/* Weather bubble inside the map popup */
+.popup-title { font-weight: 700; font-size: 1.05em; margin-bottom: 4px; }
+.popup-temp  { font-size: 1.4em; font-weight: 700; color: #1b2a4a; }
+
+.hidden { display: none; }
+
+/* ===== AI assistant ===== */
+.chat-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.chat-head strong { color: #1b2a4a; }
+
+.chat-engine {
+  font-size: .75em;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: #e7edf6;
+  color: #43536e;
+}
+
+.chat-log {
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 4px;
+  margin-bottom: 10px;
+}
+
+.chat-msg {
+  max-width: 82%;
+  padding: 9px 13px;
+  margin-bottom: 8px;
+  border-radius: 14px;
+  font-size: .93em;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.chat-bot  { background: #f1f4f8; color: #1f2a37; border-bottom-left-radius: 4px; }
+.chat-user { background: #1b2a4a; color: #fff; margin-left: auto; border-bottom-right-radius: 4px; }
+
+.chat-suggestions { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 10px; }
+
+.chat-chip {
+  padding: 6px 12px;
+  font-family: inherit;
+  font-size: .82em;
+  background: #fff;
+  border: 1px solid #d4dbe5;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.chat-chip:hover { background: #e7edf6; border-color: #1b2a4a; }
+
+.chat-form { display: flex; gap: 8px; }
+
+#chatInput {
+  flex: 1;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: .95em;
+  border: 2px solid #d4dbe5;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color .25s;
+}
+#chatInput:focus { border-color: #1b2a4a; }
+
+#chatSend {
+  padding: 10px 20px;
+  font-family: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: #1b2a4a;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background .2s;
+}
+#chatSend:hover { background: #2c4372; }
+#chatSend:disabled { background: #9aa7b8; cursor: default; }
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  #searchForm { flex-direction: column; }
+  .weather-main { flex-direction: column; text-align: center; }
+  .details { justify-content: center; }
+  .share-targets { flex-direction: column; }
+  .share-target { justify-content: center; }
+  .chat-msg { max-width: 92%; }
+  .chat-suggestions { flex-direction: column; }
+  #map { height: 55vh; }
+}
